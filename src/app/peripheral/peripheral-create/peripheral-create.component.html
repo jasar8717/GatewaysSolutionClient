@@ -1,0 +1,29 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>Create a new peripheral</mat-card-title>
+      <form [formGroup]="peripheralForm" autocomplete="off" novalidate (ngSubmit)="createPeripheral(peripheralForm.value)" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Vendor" formControlName="vendor" id="vendor">
+          <mat-error *ngIf="hasError('vendor', 'required')">Vendor is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="UID" formControlName="uid" id="uid">
+          <mat-error *ngIf="hasError('uid', 'required')">UID is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a created date" formControlName="createdDate" id="createdDate" 
+              readonly (click)="picker.open()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-checkbox formControlName="status" color="primary">Online</mat-checkbox>
+
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" [disabled]="!peripheralForm.valid">Create</button>
+        <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      </mat-card-actions>
+      </form>
+    </mat-card>
+</section>

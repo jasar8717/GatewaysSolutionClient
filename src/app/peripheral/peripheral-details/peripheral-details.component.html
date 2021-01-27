@@ -1,0 +1,32 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>Details for the peripheral</mat-card-title>
+      <mat-card-content>
+        <div fxLayout="column wrap" fxLayoutGap="40px">
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Vendor:</strong></div>
+            <div fxFlex>{{peripheral?.vendor}}</div>
+          </div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>UID:</strong></div>
+            <div fxFlex>{{peripheral?.uid}}</div>
+          </div>    
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Created Date:</strong></div>
+            <div fxFlex>{{peripheral?.createdDate | date}}</div>
+          </div>
+    
+          <div fxLayout="row wrap" fxFlex *ngIf='peripheral?.status == true; else disableStatus'>
+            <div fxFlex><strong>Status:</strong></div>
+            <div fxFlex class="beginner-color">Online</div>
+          </div>
+          <ng-template #disableStatus>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Status:</strong></div>
+              <div fxFlex class="advanced-color">Offline</div>
+            </div>
+          </ng-template>
+        </div>
+      </mat-card-content>
+    </mat-card>
+</section>

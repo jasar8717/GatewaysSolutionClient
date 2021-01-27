@@ -1,0 +1,36 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>Are you sure to delete this Peripheral?</mat-card-title>
+      <mat-card-content>
+        <div fxLayout="column wrap" fxLayoutGap="40px">
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Vendor:</strong></div>
+            <div fxFlex>{{peripheral?.vendor}}</div>
+          </div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>UID:</strong></div>
+            <div fxFlex>{{peripheral?.uid}}</div>
+          </div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Created Date:</strong></div>
+            <div fxFlex>{{peripheral?.createdDate | date}}</div>
+          </div>
+    
+          <div fxLayout="row wrap" fxFlex *ngIf='peripheral?.status == true; else disableStatus'>
+            <div fxFlex><strong>Status:</strong></div>
+            <div fxFlex class="beginner-color">Active.</div>
+          </div>
+          <ng-template #disableStatus>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Status:</strong></div>
+              <div fxFlex class="advanced-color">Deactive</div>
+            </div>
+          </ng-template>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" (click)="deletePeripheral()">Delete</button>
+        <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+</section>

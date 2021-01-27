@@ -1,0 +1,43 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Details for the gateway</mat-card-title>
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Name:</strong></div>
+              <div fxFlex>{{gateway?.name}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Address:</strong></div>
+              <div fxFlex>{{gateway?.address}}</div>
+            </div>      
+          </div>
+        </mat-card-content>
+      </mat-card>
+</section>
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-accordion fxFlex="500px" fxFlex.xs="100%">
+        <mat-expansion-panel *ngFor="let peripheral of gateway.peripherals; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{i+1}}. Peripheral
+            </mat-panel-title>
+            <mat-panel-description>
+                Vendor: &nbsp; {{peripheral?.vendor}}
+            </mat-panel-description>
+            <mat-panel-description>
+              UID: &nbsp; {{peripheral?.uid}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout="row wrap" fxLayoutAlign="center center">
+            <div fxFlex="60%" class="text-color"><strong>Created Date:</strong> &nbsp; {{peripheral?.createdDate | date}}</div>
+            <div fxFlex class="text-color" *ngIf='peripheral?.status == true; else disableStatus'>
+                <strong>Status:</strong> &nbsp; Online
+            </div>
+            <ng-template #disableStatus>
+                <div fxFlex class="text-color"><strong>Status:</strong> &nbsp; Offline</div>
+            </ng-template>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+</section>

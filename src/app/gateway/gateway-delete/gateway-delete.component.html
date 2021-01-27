@@ -1,0 +1,21 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Are you sure to delete this Gateway?</mat-card-title>
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Name:</strong></div>
+              <div fxFlex>{{gateway?.name}}</div>
+            </div>     
+            <div fxLayout="row wrap" fxFlex>
+                <div fxFlex><strong>Address:</strong></div>
+                <div fxFlex>{{gateway?.address}}</div>
+              </div>     
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary" (click)="deleteGateway()">Delete</button>
+          <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        </mat-card-actions>
+      </mat-card>
+</section>

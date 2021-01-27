@@ -1,0 +1,28 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Create a new gateway</mat-card-title>
+        <form [formGroup]="gatewayForm" autocomplete="off" novalidate (ngSubmit)="createGateway(gatewayForm.value)" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name" formControlName="name" id="name">
+            <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Address" formControlName="address">
+            <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+            <mat-error *ngIf="hasError('address', 'pattern')">Is not a IP address valid</mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <label><strong>Select peripherals (only 10 allowed):</strong></label>
+        <div *ngFor="let peripheral of peripherals">
+            <mat-checkbox (change)="checkChanged($event, peripheral)">
+              {{ peripheral.vendor }}
+            </mat-checkbox>
+        </div>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary" [disabled]="!gatewayForm.valid || limit<count">Create</button>
+          <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        </mat-card-actions>
+        </form>
+      </mat-card>
+</section>
